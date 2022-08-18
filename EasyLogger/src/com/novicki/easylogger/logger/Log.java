@@ -9,7 +9,7 @@ import java.time.format.DateTimeFormatter;
 
 /**
  * Logs information to the console. Logs can be in the form of error, debug,
- * infor, verbose, warning, and wtf. Each type of log requires a tag, that is indexed
+ * info, verbose, warning, and wtf. Each type of log requires a tag, that is indexed
  * to be searchable, and a message, which is output to the console. Each log has a timestamp
  * in the form <b>yyyy/MM/dd HH:mm:ss</b>.
  * @author Calvin Novicki
@@ -18,20 +18,52 @@ import java.time.format.DateTimeFormatter;
 public class Log {
 	
 	/**
-	 * Prints data to a log file located in <code>user.home/logs</code>. If there is
-	 * more than one log statement, the log gets appended to the existing file.
-	 * @param data
+	 * The current date and time represented as a string.
 	 */
-	private static void printToLogFile(String data) {
+	private static String dateTime = LocalDateTime.now().toString();
+	
+	/**
+	 * The user home directory of the current operating system.
+	 */
+	private static String userHome = System.getProperty("user.home");
+	
+	/**
+	 * The log directory of the user home.
+	 */
+	private static File directory = new File(userHome + "/logs/");
+		
+	/**
+	 * The file to be created in the log directory.
+	 */
+	private static File file = new File(directory.getAbsoluteFile() + "/data.log");
+	
+	/**
+	 * The <code>FileWriter</code> for the logging system.
+	 */
+	private static FileWriter fileWriter;
+	
+	/**
+	 * The <code>BufferedWriter</code> for the logging system.
+	 */
+	private static BufferedWriter bufferedWriter;
+	
+	/**
+	 * Instantiates a new Log instance.
+	 */
+	@SuppressWarnings("unused")
+	private static Log log = new Log();
+		
+	/**
+	 * Creates the log directory in the <code>user.home</code> directory if
+	 * it does not exist. 
+	 * Then is creates a file called <b>data.log</b> if it does not exists, and
+	 * if it does, then it copies the contents of that file to another log file
+	 * with the date and time, then creates a new <b>data.log</b> file.
+	 */
+	private Log() {
 		
 		try {
 			
-			String userHome = System.getProperty("user.home");
-									
-			File directory = new File(userHome + "/logs/");
-						
-			File file = new File(directory.getAbsoluteFile() + "/data.log");
-									
 			if(!directory.exists()) {
 				
 				directory.mkdir();
@@ -44,9 +76,40 @@ public class Log {
 								
 			}
 			
-			FileWriter fileWriter = new FileWriter(file, true);
+			else if(file.exists()) {
+				
+				File oldFile = file;
+				
+				oldFile.renameTo(new File(directory.getAbsoluteFile() + "/" + dateTime + ".data.log"));
+				
+				oldFile.createNewFile();
+				
+				file = new File(directory.getAbsoluteFile() + "/data.log");
+								
+			}
 			
-			BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+		}
+		
+		catch (IOException e) {
+			
+			e.printStackTrace();
+			
+		}
+		
+	}
+	
+	/**
+	 * Prints data to a log file located in <code>user.home/logs</code>. If there is
+	 * more than one log statement, the log gets appended to the existing file.
+	 * @param data
+	 */
+	private static void printToLogFile(String data) {
+		
+		try {
+			
+			fileWriter = new FileWriter(Log.file, true);
+			
+			bufferedWriter = new BufferedWriter(fileWriter);
 			
 			bufferedWriter.append(data);
 			
@@ -108,9 +171,9 @@ public class Log {
 	private static String log(String tag, String type, String message) {
 
 		String log = formatDate(tag, type) + message;
-										
-		printToLogFile(log);
 		
+		printToLogFile(log);
+												
 		return log;
 
 	}
@@ -125,9 +188,9 @@ public class Log {
 	private static String log(String type, String message) {
 
 		String log = formatDate(type) + message;
-								
+		
 		printToLogFile(log);
-
+		
 		return log;
 
 	}
