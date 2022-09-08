@@ -80,11 +80,15 @@ public class Log {
 				
 				File oldFile = file;
 				
+				dateTime = dateTime.replace(':', '-').replace('T', '_');
+				
 				oldFile.renameTo(new File(directory.getAbsoluteFile() + "/" + dateTime + ".data.log"));
 				
 				oldFile.createNewFile();
 				
 				file = new File(directory.getAbsoluteFile() + "/data.log");
+				
+				Log.i("Old file located at " + directory.getAbsoluteFile() + "/" + dateTime + ".data.log");
 								
 			}
 			
