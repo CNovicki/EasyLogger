@@ -92,7 +92,6 @@ public class Log {
 				oldFile.renameTo(new File(directory.getAbsoluteFile() + "/" + dateTime + "." + filename));
 				oldFile.createNewFile();
 				file = new File(directory.getAbsoluteFile() + "/" + filename);
-				Log.i("Old file located at " + directory.getAbsoluteFile() + "/" + dateTime + "." + filename);
 			}
 		}
 		catch(IOException e) {	
@@ -107,7 +106,7 @@ public class Log {
 	 */
 	private static void printToLogFile(String data) {
 		try {
-			fileWriter = new FileWriter(Log.file, true);
+			fileWriter = new FileWriter(Log.directory.getAbsoluteFile() + "/" + filename, true);
 			bufferedWriter = new BufferedWriter(fileWriter);
 			bufferedWriter.append(data);
 			bufferedWriter.newLine();
@@ -170,6 +169,7 @@ public class Log {
 	private static String log(String type, String message) {
 		String log = formatDate(type) + message;
 		if(enableLogging) {
+			createLog();
 			printToLogFile(log);
 		}
 		return log;
