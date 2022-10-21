@@ -52,6 +52,6 @@ Optionally, it is possible to use tags when logging; this makes logging more sea
 
 To enable logging to a file simply do `Log.enableLogging()` at the start of the program. It will only save everything logged after it. Logs are saved to `user.home/logs/data.log`. Every time the program is run, it creates a new `data.log` file and saves the old log file in the format `yyyy_MM_dd.HH-mm-ss.data.log`.
 
-Optionallty, it is possible to save save logs to a custom log file by including a parameter: `Log.enableLogging("customFile.log");` No spaces are allowed, and the filetype needs to be included, most commonly `.log`.
+Optionally, it is possible to save save logs to a custom log file by including a parameter: `Log.enableLogging("customFile.log");` No spaces are allowed, and the filetype needs to be included, most commonly `.log`.
   
  
