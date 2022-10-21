@@ -4,15 +4,15 @@ EasyLogger is my custom solution for console and file logging. The syntax is ver
 
 To write a log to the console, there are different methods:
 
-&emsp;- Log.d() for debugging,
+&emsp;- `Log.d();` for debugging,
 
-&emsp;- Log.e() for errors,
+&emsp;- `Log.e();` for errors,
 
-&emsp;- Log.i() for information,
+&emsp;- `Log.i();` for information,
 
-&emsp;- Log.v() for verbose, 
+&emsp;- `Log.v();` for verbose, 
 
-&emsp;- Log.w() for warnings
+&emsp;- `Log.w();` for warnings
 
 All primitive types are supported.
 
