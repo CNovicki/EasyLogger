@@ -44,11 +44,11 @@ Optionally, it is possible to use tags when logging; this makes logging more sea
 
 ### &emsp;Example Two:
 
-&emsp;&emsp;`Log.e("File Not Found", "Hello_World.txt");`
+&emsp;&emsp;`Log.e("FileNotFound", "Hello_World.txt");`
 
 &emsp;&emsp;Output to Console:
 
-&emsp;&emsp;`[2022/10/21 11:53:44][ERROR:File Not Found] Hello_World.txt`
+&emsp;&emsp;`[2022/10/21 11:53:44][ERROR:FileNotFound] Hello_World.txt`
 
 To enamble logging to a file simply do `Log.enableLogging()` at the start of the program. It will only save everything logged after it. Logs are saved to `user.home/logs/data.log`. Every time the program is run, it creates a new `data.log` file and saves the old log file in the format `yyyy_MM_dd.HH-mm-ss.data.log`.
 
