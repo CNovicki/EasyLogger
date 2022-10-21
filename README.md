@@ -36,7 +36,7 @@ Optionally, it is possible to use tags when logging; this makes logging more sea
 
 ### &emsp;Example One:
 
-&ensp;&emsp;`Log.d("tag", "Hello World");`
+&emsp;&emsp;`Log.d("tag", "Hello World");`
 
 &emsp;&emsp;Output to Console:
 
