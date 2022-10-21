@@ -6,7 +6,7 @@ To write a log to the console, there are different methods:
 
 &emsp;- Log.d() for debugging,
 
-&emsp;- Log.e() f0r errors,
+&emsp;- Log.e() for errors,
 
 &emsp;- Log.i() for information,
 
