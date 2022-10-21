@@ -1,4 +1,4 @@
-package com.novicki.easylogger.logger;
+package com.novicki.easylogger;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -9,7 +9,7 @@ import java.time.format.DateTimeFormatter;
 
 /**
  * Logs information to the console. Logs can be in the form of error, debug,
- * info, verbose, warning, and wtf. Each type of log requires a tag, that is indexed
+ * info, verbose, warning. Each type of log requires a tag, that is indexed
  * to be search-able, and a message, which is output to the console. Each log has a time-stamp
  * in the form <b>yyyy/MM/dd HH:mm:ss</b>.
  * @author Calvin Novicki
@@ -62,10 +62,17 @@ public class Log {
 	 */
 	private static BufferedWriter bufferedWriter;
 
+	/**
+	 * Enables logging to a file.
+	 */
 	public static void enableLogging() {
 		Log.enableLogging = true;
 	}
 	
+	/**
+	 * Enables logging to file with a custom filename.
+	 * @param filename The filename to use.
+	 */
 	public static void enableLogging(String filename) {
 		Log.enableLogging = true;
 		Log.filename = filename;
@@ -102,7 +109,7 @@ public class Log {
 	/**
 	 * Prints data to a log file located in <code>user.home/logs</code>. If there is
 	 * more than one log statement, the log gets appended to the existing file.
-	 * @param data
+	 * @param data The data to save.
 	 */
 	private static void printToLogFile(String data) {
 		try {
@@ -121,9 +128,9 @@ public class Log {
 
 	/**
 	 * Formats the date for logging.
-	 * @param tag
-	 * @param type
-	 * @return
+	 * @param tag The tag to use.
+	 * @param type The type of log.
+	 * @return formatted String
 	 */
 	private static String formatDate(String tag, String type) {
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
@@ -133,9 +140,8 @@ public class Log {
 
 	/**
 	 * Formats the date for logging.
-	 * @param tag
-	 * @param type
-	 * @return
+	 * @param type The type of log.
+	 * @return formatted String
 	 */
 	private static String formatDate(String type) {
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
@@ -145,10 +151,10 @@ public class Log {
 
 	/**
 	 * Logs to the console.
-	 * @param tag
-	 * @param type
-	 * @param message
-	 * @return
+	 * @param tag The tag to use.
+	 * @param type The type of log.
+	 * @param message The message to log.
+	 * @return log
 	 */
 	private static String log(String tag, String type, String message) {
 		String log = formatDate(tag, type) + message;
@@ -161,10 +167,9 @@ public class Log {
 
 	/**
 	 * Logs to the console.
-	 * @param tag
-	 * @param type
-	 * @param message
-	 * @return
+	 * @param type The type of log.
+	 * @param message The message to log.
+	 * @return log
 	 */
 	private static String log(String type, String message) {
 		String log = formatDate(type) + message;
@@ -177,8 +182,6 @@ public class Log {
 
 	/**
 	 * Use this for logging errors.
-	 * @param tag
-	 * @param message
 	 */
 	public static void e() {
 		System.err.println();
@@ -186,8 +189,6 @@ public class Log {
 	
 	/**
 	 * Use this for logging debugging.
-	 * @param tag
-	 * @param message
 	 */
 	public static void d() {
 		System.out.println();
@@ -195,8 +196,6 @@ public class Log {
 	
 	/**
 	 * Use this for logging information.
-	 * @param tag
-	 * @param message
 	 */
 	public static void i() {
 		System.out.println();
@@ -204,8 +203,6 @@ public class Log {
 	
 	/**
 	 * Use this for logging verbose information.
-	 * @param tag
-	 * @param message
 	 */
 	public static void v() {
 		System.out.println();
@@ -213,8 +210,6 @@ public class Log {
 	
 	/**
 	 * Use this for logging warnings.
-	 * @param tag
-	 * @param message
 	 */
 	public static void w() {
 		System.out.println();
@@ -223,8 +218,6 @@ public class Log {
 	/**
 	 * Use this for logging when something goes absolutely wrong
 	 * and there is no other solution.
-	 * @param tag
-	 * @param message
 	 */
 	public static void wtf() {
 		System.out.println();
@@ -232,8 +225,8 @@ public class Log {
 	
 	/**
 	 * Use this for logging errors.
-	 * @param tag
-	 * @param message
+	 * @param tag The tag to use.
+	 * @param message The message to log.
 	 */
 	public static void e(String tag, String message) {
 		System.err.println(log(tag.toLowerCase(), "ERROR", message));
@@ -241,8 +234,7 @@ public class Log {
 
 	/**
 	 * Use this for logging errors.
-	 * @param tag
-	 * @param message
+	 * @param message The message to log.
 	 */
 	public static void e(String message) {
 		System.err.println(log("ERROR", message));
@@ -250,8 +242,8 @@ public class Log {
 
 	/**
 	 * Use this for logging debugging.
-	 * @param tag
-	 * @param message
+	 * @param tag The tag to use.
+	 * @param message The message to log.
 	 */
 	public static void d(String tag, String message) {
 		System.out.println(log(tag.toLowerCase(), "DEBUG", message));
@@ -259,8 +251,7 @@ public class Log {
 
 	/**
 	 * Use this for logging debugging.
-	 * @param tag
-	 * @param message
+	 * @param message The message to log.
 	 */
 	public static void d(String message) {
 		System.out.println(log("DEBUG", message));
@@ -268,8 +259,8 @@ public class Log {
 
 	/**
 	 * Use this for logging information.
-	 * @param tag
-	 * @param message
+	 * @param tag The tag to use.
+	 * @param message The message to log.
 	 */
 	public static void i(String tag, String message) {
 		System.out.println(log(tag.toLowerCase(), "INFO", message));
@@ -277,8 +268,7 @@ public class Log {
 
 	/**
 	 * Use this for logging information.
-	 * @param tag
-	 * @param message
+	 * @param message The message to log.
 	 */
 	public static void i(String message) {
 		System.out.println(log("INFO", message));
@@ -286,8 +276,8 @@ public class Log {
 
 	/**
 	 * Use this for logging verbose information.
-	 * @param tag
-	 * @param message
+	 * @param tag The tag to log.
+	 * @param message The message to log.
 	 */
 	public static void v(String tag, String message) {
 		System.out.println(log(tag.toLowerCase(), "VERBOSE", message));
@@ -295,8 +285,7 @@ public class Log {
 
 	/**
 	 * Use this for logging verbose information.
-	 * @param tag
-	 * @param message
+	 * @param message The message to log.
 	 */
 	public static void v(String message) {
 		System.out.println(log("VERBOSE", message));
@@ -304,8 +293,8 @@ public class Log {
 
 	/**
 	 * Use this for logging warnings.
-	 * @param tag
-	 * @param message
+	 * @param tag The tag to use.
+	 * @param message The message to log.
 	 */
 	public static void w(String tag, String message) {
 		System.out.println(log(tag.toLowerCase(), "WARN", message));
@@ -313,8 +302,7 @@ public class Log {
 
 	/**
 	 * Use this for logging warnings.
-	 * @param tag
-	 * @param message
+	 * @param message The message to log.
 	 */
 	public static void w(String message) {
 		System.out.println(log("WARN", message));
@@ -323,8 +311,8 @@ public class Log {
 	/**
 	 * Use this for logging when something goes absolutely wrong
 	 * and there is no other solution.
-	 * @param tag
-	 * @param message
+	 * @param tag The tag to use.
+	 * @param message The message to log.
 	 */
 	public static void wtf(String tag, String message) {
 		System.out.println(log(tag.toLowerCase(), "WTF", message));
@@ -333,8 +321,7 @@ public class Log {
 	/**
 	 * Use this for logging when something goes absolutely wrong
 	 * and there is no other solution.
-	 * @param tag
-	 * @param message
+	 * @param message The message to log.
 	 */
 	public static void wtf(String message) {
 		System.out.println(log("WTF", message));
@@ -342,8 +329,8 @@ public class Log {
 
 	/**
 	 * Use this for logging errors.
-	 * @param tag
-	 * @param message
+	 * @param tag The tag to use.
+	 * @param message The message to log.
 	 */
 	public static void e(String tag, int message) {
 		System.err.println(log(tag.toLowerCase(), "ERROR", Integer.toString(message)));
@@ -352,8 +339,7 @@ public class Log {
 
 	/**
 	 * Use this for logging errors.
-	 * @param tag
-	 * @param message
+	 * @param message The message to log.
 	 */
 	public static void e(int message) {
 		System.err.println(log("ERROR", Integer.toString(message)));
@@ -361,8 +347,8 @@ public class Log {
 
 	/**
 	 * Use this for logging debugging.
-	 * @param tag
-	 * @param message
+	 * @param tag The tag to use.
+	 * @param message The message to log.
 	 */
 	public static void d(String tag, int message) {
 		System.out.println(log(tag.toLowerCase(), "DEBUG", Integer.toString(message)));
@@ -370,8 +356,7 @@ public class Log {
 
 	/**
 	 * Use this for logging debugging.
-	 * @param tag
-	 * @param message
+	 * @param message The message to use.
 	 */
 	public static void d(int message) {
 		System.out.println(log("DEBUG", Integer.toString(message)));
@@ -379,8 +364,8 @@ public class Log {
 
 	/**
 	 * Use this for logging information.
-	 * @param tag
-	 * @param message
+	 * @param tag The tag to use.
+	 * @param message The message to log.
 	 */
 	public static void i(String tag, int message) {
 		System.out.println(log(tag.toLowerCase(), "INFO", Integer.toString(message)));
@@ -388,8 +373,7 @@ public class Log {
 
 	/**
 	 * Use this for logging information.
-	 * @param tag
-	 * @param message
+	 * @param message The message to log.
 	 */
 	public static void i(int message) {
 		System.out.println(log("INFO", Integer.toString(message)));
@@ -397,8 +381,8 @@ public class Log {
 
 	/**
 	 * Use this for logging verbose information.
-	 * @param tag
-	 * @param message
+	 * @param tag The tag to use.
+	 * @param message The message to log.
 	 */
 	public static void v(String tag, int message) {
 		System.out.println(log(tag.toLowerCase(), "VERBOSE", Integer.toString(message)));
@@ -406,8 +390,7 @@ public class Log {
 
 	/**
 	 * Use this for logging verbose information.
-	 * @param tag
-	 * @param message
+	 * @param message The message to log.
 	 */
 	public static void v(int message) {
 		System.out.println(log("VERBOSE", Integer.toString(message)));
@@ -415,8 +398,8 @@ public class Log {
 
 	/**
 	 * Use this for logging warnings.
-	 * @param tag
-	 * @param message
+	 * @param tag The tag to use.
+	 * @param message The message to log.
 	 */
 	public static void w(String tag, int message) {
 		System.out.println(log(tag.toLowerCase(), "WARN", Integer.toString(message)));
@@ -424,8 +407,7 @@ public class Log {
 
 	/**
 	 * Use this for logging warnings.
-	 * @param tag
-	 * @param message
+	 * @param message The message to log.
 	 */
 	public static void w(int message) {
 		System.out.println(log("WTF", Integer.toString(message)));
@@ -434,8 +416,8 @@ public class Log {
 	/**
 	 * Use this for logging when something goes absolutely wrong
 	 * and there is no other solution.
-	 * @param tag
-	 * @param message
+	 * @param tag The tag to use.
+	 * @param message The message to log.
 	 */
 	public static void wtf(String tag, int message) {
 		System.out.println(log(tag.toLowerCase(), "WTF", Integer.toString(message)));
@@ -444,8 +426,7 @@ public class Log {
 	/**
 	 * Use this for logging when something goes absolutely wrong
 	 * and there is no other solution.
-	 * @param tag
-	 * @param message
+	 * @param message The message to log.
 	 */
 	public static void wtf(int message) {
 		System.out.println(log("WTF", Integer.toString(message)));
@@ -453,8 +434,8 @@ public class Log {
 
 	/**
 	 * Use this for logging errors.
-	 * @param tag
-	 * @param message
+	 * @param tag The tag to use.
+	 * @param message The message to log.
 	 */
 	public static void e(String tag, boolean message) {
 		System.err.println(log(tag.toLowerCase(), "ERROR", Boolean.toString(message)));
@@ -462,8 +443,7 @@ public class Log {
 
 	/**
 	 * Use this for logging errors.
-	 * @param tag
-	 * @param message
+	 * @param message The message to log.
 	 */
 	public static void e(boolean message) {
 		System.err.println(log("ERROR", Boolean.toString(message)));
@@ -471,8 +451,8 @@ public class Log {
 
 	/**
 	 * Use this for logging debugging.
-	 * @param tag
-	 * @param message
+	 * @param tag The tag to use.
+	 * @param message The message to log.
 	 */
 	public static void d(String tag, boolean message) {
 		System.out.println(log(tag.toLowerCase(), "DEBUG", Boolean.toString(message)));
@@ -480,8 +460,7 @@ public class Log {
 
 	/**
 	 * Use this for logging debugging.
-	 * @param tag
-	 * @param message
+	 * @param message The message to log.
 	 */
 	public static void d(boolean message) {
 		System.out.println(log("DEBUG", Boolean.toString(message)));
@@ -489,8 +468,8 @@ public class Log {
 
 	/**
 	 * Use this for logging information.
-	 * @param tag
-	 * @param message
+	 * @param tag The tag to use.
+	 * @param message The message to use.
 	 */
 	public static void i(String tag, boolean message) {
 		System.out.println(log(tag.toLowerCase(), "INFO", Boolean.toString(message)));
@@ -498,8 +477,7 @@ public class Log {
 
 	/**
 	 * Use this for logging information.
-	 * @param tag
-	 * @param message
+	 * @param message The message to log.
 	 */
 	public static void i(boolean message) {
 		System.out.println(log("INFO", Boolean.toString(message)));
@@ -507,8 +485,8 @@ public class Log {
 
 	/**
 	 * Use this for logging verbose information.
-	 * @param tag
-	 * @param message
+	 * @param tag The tag to use.
+	 * @param message The message to log.
 	 */
 	public static void v(String tag, boolean message) {
 		System.out.println(log(tag.toLowerCase(), "VERBOSE", Boolean.toString(message)));
@@ -516,8 +494,7 @@ public class Log {
 
 	/**
 	 * Use this for logging verbose information.
-	 * @param tag
-	 * @param message
+	 * @param message The message to log.
 	 */
 	public static void v(boolean message) {
 		System.out.println(log("VERBOSE", Boolean.toString(message)));
@@ -525,8 +502,8 @@ public class Log {
 
 	/**
 	 * Use this for logging warnings.
-	 * @param tag
-	 * @param message
+	 * @param tag The tag to use.
+	 * @param message The message to log.
 	 */
 	public static void w(String tag, boolean message) {
 		System.out.println(log(tag.toLowerCase(), "WARN", Boolean.toString(message)));
@@ -534,8 +511,7 @@ public class Log {
 
 	/**
 	 * Use this for logging warnings.
-	 * @param tag
-	 * @param message
+	 * @param message The message to log.
 	 */
 	public static void w(boolean message) {
 		System.out.println(log("WARN", Boolean.toString(message)));
@@ -544,8 +520,8 @@ public class Log {
 	/**
 	 * Use this for logging when something goes absolutely wrong
 	 * and there is no other solution.
-	 * @param tag
-	 * @param message
+	 * @param tag The tag to use.
+	 * @param message The message to log.
 	 */
 	public static void wtf(String tag, boolean message) {
 		System.out.println(log(tag.toLowerCase(), "WTF", Boolean.toString(message)));
@@ -554,8 +530,7 @@ public class Log {
 	/**
 	 * Use this for logging when something goes absolutely wrong
 	 * and there is no other solution.
-	 * @param tag
-	 * @param message
+	 * @param message The message to log.
 	 */
 	public static void wtf(boolean message) {
 		System.out.println(log("WTF", Boolean.toString(message)));
@@ -563,8 +538,8 @@ public class Log {
 
 	/**
 	 * Use this for logging errors.
-	 * @param tag
-	 * @param message
+	 * @param tag The tag to use.
+	 * @param message The message to log.
 	 */
 	public static void e(String tag, byte message) {
 		System.err.println(log(tag.toLowerCase(), "ERROR", Byte.toString(message)));
@@ -572,8 +547,7 @@ public class Log {
 
 	/**
 	 * Use this for logging errors.
-	 * @param tag
-	 * @param message
+	 * @param message The message to log.
 	 */
 	public static void e(byte message) {
 		System.err.println(log("ERROR", Byte.toString(message)));
@@ -581,8 +555,8 @@ public class Log {
 
 	/**
 	 * Use this for logging debugging.
-	 * @param tag
-	 * @param message
+	 * @param tag The tag to use.
+	 * @param message The message to log.
 	 */
 	public static void d(String tag, byte message) {
 		System.out.println(log(tag.toLowerCase(), "DEBUG", Byte.toString(message)));
@@ -590,8 +564,7 @@ public class Log {
 
 	/**
 	 * Use this for logging debugging.
-	 * @param tag
-	 * @param message
+	 * @param message The message to log.
 	 */
 	public static void d(byte message) {
 		System.out.println(log("DEBUG", Byte.toString(message)));
@@ -599,8 +572,8 @@ public class Log {
 
 	/**
 	 * Use this for logging information.
-	 * @param tag
-	 * @param message
+	 * @param tag The tag to use.
+	 * @param message The message to log.
 	 */
 	public static void i(String tag, byte message) {
 		System.out.println(log(tag.toLowerCase(), "INFO", Byte.toString(message)));
@@ -608,8 +581,7 @@ public class Log {
 
 	/**
 	 * Use this for logging information.
-	 * @param tag
-	 * @param message
+	 * @param message The message to log.
 	 */
 	public static void i(byte message) {
 		System.out.println(log("INFO", Byte.toString(message)));
@@ -617,8 +589,8 @@ public class Log {
 
 	/**
 	 * Use this for logging verbose information.
-	 * @param tag
-	 * @param message
+	 * @param tag The tag to use.
+	 * @param message The message to log.
 	 */
 	public static void v(String tag, byte message) {
 		System.out.println(log(tag.toLowerCase(), "VERBOSE", Byte.toString(message)));
@@ -626,8 +598,7 @@ public class Log {
 
 	/**
 	 * Use this for logging verbose information.
-	 * @param tag
-	 * @param message
+	 * @param message The message to log.
 	 */
 	public static void v(byte message) {
 		System.out.println(log("VERBOSE", Byte.toString(message)));
@@ -635,8 +606,8 @@ public class Log {
 
 	/**
 	 * Use this for logging warnings.
-	 * @param tag
-	 * @param message
+	 * @param tag The tag to use.
+	 * @param message The message to log.
 	 */
 	public static void w(String tag, byte message) {
 		System.out.println(log(tag.toLowerCase(), "WARN", Byte.toString(message)));
@@ -644,8 +615,7 @@ public class Log {
 
 	/**
 	 * Use this for logging warnings.
-	 * @param tag
-	 * @param message
+	 * @param message The message to log.
 	 */
 	public static void w(byte message) {
 		System.out.println(log("WARN", Byte.toString(message)));
@@ -654,8 +624,8 @@ public class Log {
 	/**
 	 * Use this for logging when something goes absolutely wrong
 	 * and there is no other solution.
-	 * @param tag
-	 * @param message
+	 * @param tag The tag to use.
+	 * @param message The message to log.
 	 */
 	public static void wtf(String tag, byte message) {
 		System.out.println(log(tag.toLowerCase(), "WTF", Byte.toString(message)));
@@ -664,8 +634,7 @@ public class Log {
 	/**
 	 * Use this for logging when something goes absolutely wrong
 	 * and there is no other solution.
-	 * @param tag
-	 * @param message
+	 * @param message The message to log.
 	 */
 	public static void wtf(byte message) {
 		System.out.println(log("WTF", Byte.toString(message)));
@@ -673,8 +642,8 @@ public class Log {
 
 	/**
 	 * Use this for logging errors.
-	 * @param tag
-	 * @param message
+	 * @param tag The tag to use.
+	 * @param message The message to log.
 	 */
 	public static void e(String tag, long message) {
 		System.err.println(log(tag.toLowerCase(), "ERROR", Long.toString(message)));
@@ -682,8 +651,7 @@ public class Log {
 
 	/**
 	 * Use this for logging errors.
-	 * @param tag
-	 * @param message
+	 * @param message The message to log.
 	 */
 	public static void e(long message) {
 		System.err.println(log("ERROR", Long.toString(message)));
@@ -691,8 +659,8 @@ public class Log {
 
 	/**
 	 * Use this for logging debugging.
-	 * @param tag
-	 * @param message
+	 * @param tag The tag to use.
+	 * @param message The message to log.
 	 */
 	public static void d(String tag, long message) {
 		System.out.println(log(tag.toLowerCase(), "DEBUG", Long.toString(message)));
@@ -700,8 +668,7 @@ public class Log {
 
 	/**
 	 * Use this for logging debugging.
-	 * @param tag
-	 * @param message
+	 * @param message The message to use.
 	 */
 	public static void d(long message) {
 		System.out.println(log("DEBUG", Long.toString(message)));
@@ -709,8 +676,8 @@ public class Log {
 
 	/**
 	 * Use this for logging information.
-	 * @param tag
-	 * @param message
+	 * @param tag The tag to use.
+	 * @param message The message to log.
 	 */
 	public static void i(String tag, long message) {
 		System.out.println(log(tag.toLowerCase(), "INFO", Long.toString(message)));
@@ -718,8 +685,7 @@ public class Log {
 
 	/**
 	 * Use this for logging information.
-	 * @param tag
-	 * @param message
+	 * @param message The message to log.
 	 */
 	public static void i(long message) {
 		System.out.println(log("INFO", Long.toString(message)));
@@ -727,8 +693,8 @@ public class Log {
 
 	/**
 	 * Use this for logging verbose information.
-	 * @param tag
-	 * @param message
+	 * @param tag The tag to use.
+	 * @param message The message to log.
 	 */
 	public static void v(String tag, long message) {
 		System.out.println(log(tag.toLowerCase(), "VERBOSE", Long.toString(message)));
@@ -736,8 +702,7 @@ public class Log {
 
 	/**
 	 * Use this for logging verbose information.
-	 * @param tag
-	 * @param message
+	 * @param message The message to log.
 	 */
 	public static void v(long message) {
 		System.out.println(log("VERBOSE", Long.toString(message)));
@@ -745,8 +710,8 @@ public class Log {
 
 	/**
 	 * Use this for logging warnings.
-	 * @param tag
-	 * @param message
+	 * @param tag The tag to use.
+	 * @param message The message to log.
 	 */
 	public static void w(String tag, long message) {
 		System.out.println(log(tag.toLowerCase(), "WARN", Long.toString(message)));
@@ -754,8 +719,7 @@ public class Log {
 
 	/**
 	 * Use this for logging warnings.
-	 * @param tag
-	 * @param message
+	 * @param message The message to log.
 	 */
 	public static void w(long message) {
 		System.out.println(log("WARN", Long.toString(message)));
@@ -764,8 +728,8 @@ public class Log {
 	/**
 	 * Use this for logging when something goes absolutely wrong
 	 * and there is no other solution.
-	 * @param tag
-	 * @param message
+	 * @param tag The tag to use.
+	 * @param message The message to log.
 	 */
 	public static void wtf(String tag, long message) {
 		System.out.println(log(tag.toLowerCase(), "WTF", Long.toString(message)));
@@ -774,8 +738,7 @@ public class Log {
 	/**
 	 * Use this for logging when something goes absolutely wrong
 	 * and there is no other solution.
-	 * @param tag
-	 * @param message
+	 * @param message The message to log.
 	 */
 	public static void wtf(long message) {
 		System.out.println(log("WTF", Long.toString(message)));
@@ -783,8 +746,8 @@ public class Log {
 
 	/**
 	 * Use this for logging errors.
-	 * @param tag
-	 * @param message
+	 * @param tag The tag to use.
+	 * @param message The message to log.
 	 */
 	public static void e(String tag, float message) {
 		System.err.println(log(tag.toLowerCase(), "ERROR", Float.toString(message)));
@@ -792,8 +755,7 @@ public class Log {
 
 	/**
 	 * Use this for logging errors.
-	 * @param tag
-	 * @param message
+	 * @param message The message to log.
 	 */
 	public static void e(float message) {
 		System.err.println(log("ERROR", Float.toString(message)));
@@ -801,8 +763,8 @@ public class Log {
 
 	/**
 	 * Use this for logging debugging.
-	 * @param tag
-	 * @param message
+	 * @param tag The tag to use.
+	 * @param message The message to log.
 	 */
 	public static void d(String tag, float message) {
 		System.out.println(log(tag.toLowerCase(), "DEBUG", Float.toString(message)));
@@ -810,8 +772,7 @@ public class Log {
 
 	/**
 	 * Use this for logging debugging.
-	 * @param tag
-	 * @param message
+	 * @param message The message to log.
 	 */
 	public static void d(float message) {
 		System.out.println(log("DEBUG", Float.toString(message)));
@@ -819,8 +780,8 @@ public class Log {
 
 	/**
 	 * Use this for logging information.
-	 * @param tag
-	 * @param message
+	 * @param tag The tag to use.
+	 * @param message The message to log.
 	 */
 	public static void i(String tag, float message) {
 		System.out.println(log(tag.toLowerCase(), "INFO", Float.toString(message)));
@@ -828,8 +789,7 @@ public class Log {
 
 	/**
 	 * Use this for logging information.
-	 * @param tag
-	 * @param message
+	 * @param message The message to log.
 	 */
 	public static void i(float message) {
 		System.out.println(log("INFO", Float.toString(message)));
@@ -837,8 +797,8 @@ public class Log {
 
 	/**
 	 * Use this for logging verbose information.
-	 * @param tag
-	 * @param message
+	 * @param tag The tag to use.
+	 * @param message The message to log.
 	 */
 	public static void v(String tag, float message) {
 		System.out.println(log(tag.toLowerCase(), "VERBOSE", Float.toString(message)));
@@ -846,8 +806,7 @@ public class Log {
 
 	/**
 	 * Use this for logging verbose information.
-	 * @param tag
-	 * @param message
+	 * @param message The message to log.
 	 */
 	public static void v(float message) {
 		System.out.println(log("VERBOSE", Float.toString(message)));
@@ -855,8 +814,8 @@ public class Log {
 
 	/**
 	 * Use this for logging warnings.
-	 * @param tag
-	 * @param message
+	 * @param tag The tag to use.
+	 * @param message The message to log.
 	 */
 	public static void w(String tag, float message) {
 		System.out.println(log(tag.toLowerCase(), "WARN", Float.toString(message)));
@@ -864,8 +823,7 @@ public class Log {
 
 	/**
 	 * Use this for logging warnings.
-	 * @param tag
-	 * @param message
+	 * @param message The message to log.
 	 */
 	public static void w(float message) {
 		System.out.println(log("WARN", Float.toString(message)));
@@ -874,8 +832,8 @@ public class Log {
 	/**
 	 * Use this for logging when something goes absolutely wrong
 	 * and there is no other solution.
-	 * @param tag
-	 * @param message
+	 * @param tag The tag to use.
+	 * @param message The message to log.
 	 */
 	public static void wtf(String tag, float message) {
 		System.out.println(log(tag.toLowerCase(), "WTF", Float.toString(message)));
@@ -884,8 +842,7 @@ public class Log {
 	/**
 	 * Use this for logging when something goes absolutely wrong
 	 * and there is no other solution.
-	 * @param tag
-	 * @param message
+	 * @param message The message to log.
 	 */
 	public static void wtf(float message) {
 		System.out.println(log("WTF", Float.toString(message)));
@@ -893,8 +850,8 @@ public class Log {
 
 	/**
 	 * Use this for logging errors.
-	 * @param tag
-	 * @param message
+	 * @param tag The tag to use.
+	 * @param message The message to use.
 	 */
 	public static void e(String tag, double message) {
 		System.err.println(log(tag.toLowerCase(), "ERROR", Double.toString(message)));
@@ -902,8 +859,7 @@ public class Log {
 
 	/**
 	 * Use this for logging errors.
-	 * @param tag
-	 * @param message
+	 * @param message The message to log.
 	 */
 	public static void e(double message) {
 		System.err.println(log("ERROR", Double.toString(message)));
@@ -911,8 +867,8 @@ public class Log {
 
 	/**
 	 * Use this for logging debugging.
-	 * @param tag
-	 * @param message
+	 * @param tag The tag to use.
+	 * @param message The message to log.
 	 */
 	public static void d(String tag, double message) {
 		System.out.println(log(tag.toLowerCase(), "DEBUG", Double.toString(message)));
@@ -920,8 +876,7 @@ public class Log {
 
 	/**
 	 * Use this for logging debugging.
-	 * @param tag
-	 * @param message
+	 * @param message The message to log.
 	 */
 	public static void d(double message) {
 		System.out.println(log("DEBUG", Double.toString(message)));
@@ -929,8 +884,8 @@ public class Log {
 
 	/**
 	 * Use this for logging information.
-	 * @param tag
-	 * @param message
+	 * @param tag The tag to use.
+	 * @param message The message to log.
 	 */
 	public static void i(String tag, double message) {
 		System.out.println(log(tag.toLowerCase(), "INFO", Double.toString(message)));
@@ -938,8 +893,7 @@ public class Log {
 
 	/**
 	 * Use this for logging information.
-	 * @param tag
-	 * @param message
+	 * @param message The message to log.
 	 */
 	public static void i(double message) {
 		System.out.println(log("INFO", Double.toString(message)));
@@ -947,8 +901,8 @@ public class Log {
 
 	/**
 	 * Use this for logging verbose information.
-	 * @param tag
-	 * @param message
+	 * @param tag The tag to use.
+	 * @param message The message to log.
 	 */
 	public static void v(String tag, double message) {
 		System.out.println(log(tag.toLowerCase(), "VERBOSE", Double.toString(message)));
@@ -956,8 +910,7 @@ public class Log {
 
 	/**
 	 * Use this for logging verbose information.
-	 * @param tag
-	 * @param message
+	 * @param message The message to log.
 	 */
 	public static void v(double message) {
 		System.out.println(log("VERBOSE", Double.toString(message)));
@@ -965,8 +918,8 @@ public class Log {
 
 	/**
 	 * Use this for logging warnings.
-	 * @param tag
-	 * @param message
+	 * @param tag The tag to use.
+	 * @param message The message to log.
 	 */
 	public static void w(String tag, double message) {
 		System.out.println(log(tag.toLowerCase(), "WARN", Double.toString(message)));
@@ -974,8 +927,7 @@ public class Log {
 
 	/**
 	 * Use this for logging warnings.
-	 * @param tag
-	 * @param message
+	 * @param message The message to log.
 	 */
 	public static void w(double message) {
 		System.out.println(log("WARN", Double.toString(message)));
@@ -984,8 +936,8 @@ public class Log {
 	/**
 	 * Use this for logging when something goes absolutely wrong
 	 * and there is no other solution.
-	 * @param tag
-	 * @param message
+	 * @param tag The tag to use.
+	 * @param message The message to log.
 	 */
 	public static void wtf(String tag, double message) {
 		System.out.println(log(tag.toLowerCase(), "WTF", Double.toString(message)));
@@ -994,8 +946,7 @@ public class Log {
 	/**
 	 * Use this for logging when something goes absolutely wrong
 	 * and there is no other solution.
-	 * @param tag
-	 * @param message
+	 * @param message The message to log.
 	 */
 	public static void wtf(double message) {
 		System.out.println(log("WTF", Double.toString(message)));
@@ -1003,8 +954,8 @@ public class Log {
 
 	/**
 	 * Use this for logging errors.
-	 * @param tag
-	 * @param message
+	 * @param tag The tag to use.
+	 * @param message The message to log.
 	 */
 	public static void e(String tag, short message) {
 		System.err.println(log(tag.toLowerCase(), "ERROR", Short.toString(message)));
@@ -1012,8 +963,7 @@ public class Log {
 
 	/**
 	 * Use this for logging errors.
-	 * @param tag
-	 * @param message
+	 * @param message The message to log.
 	 */
 	public static void e(short message) {
 		System.err.println(log("ERROR", Short.toString(message)));
@@ -1021,8 +971,8 @@ public class Log {
 
 	/**
 	 * Use this for logging debugging.
-	 * @param tag
-	 * @param message
+	 * @param tag The tag to use.
+	 * @param message The message to log.
 	 */
 	public static void d(String tag, short message) {
 		System.out.println(log(tag.toLowerCase(), "DEBUG", Short.toString(message)));
@@ -1030,8 +980,7 @@ public class Log {
 
 	/**
 	 * Use this for logging debugging.
-	 * @param tag
-	 * @param message
+	 * @param message The message to log.
 	 */
 	public static void d(short message) {
 		System.out.println(log("DEBUG", Short.toString(message)));
@@ -1039,8 +988,8 @@ public class Log {
 
 	/**
 	 * Use this for logging information.
-	 * @param tag
-	 * @param message
+	 * @param tag The tag to use.
+	 * @param message The message to log.
 	 */
 	public static void i(String tag, short message) {
 		System.out.println(log(tag.toLowerCase(), "INFO", Short.toString(message)));
@@ -1048,8 +997,7 @@ public class Log {
 
 	/**
 	 * Use this for logging information.
-	 * @param tag
-	 * @param message
+	 * @param message The message to log.
 	 */
 	public static void i(short message) {
 		System.out.println(log("INFO", Short.toString(message)));
@@ -1057,8 +1005,8 @@ public class Log {
 
 	/**
 	 * Use this for logging verbose information.
-	 * @param tag
-	 * @param message
+	 * @param tag The tag to use.
+	 * @param message The message to log.
 	 */
 	public static void v(String tag, short message) {
 		System.out.println(log(tag.toLowerCase(), "VERBOSE", Short.toString(message)));
@@ -1066,8 +1014,7 @@ public class Log {
 
 	/**
 	 * Use this for logging verbose information.
-	 * @param tag
-	 * @param message
+	 * @param message The message to log.
 	 */
 	public static void v(short message) {
 		System.out.println(log("VERBOSE", Short.toString(message)));
@@ -1075,8 +1022,8 @@ public class Log {
 
 	/**
 	 * Use this for logging warnings.
-	 * @param tag
-	 * @param message
+	 * @param tag The tag to use.
+	 * @param message The message to log.
 	 */
 	public static void w(String tag, short message) {
 		System.out.println(log(tag.toLowerCase(), "WARN", Short.toString(message)));
@@ -1084,8 +1031,7 @@ public class Log {
 
 	/**
 	 * Use this for logging warnings.
-	 * @param tag
-	 * @param message
+	 * @param message The message to log.
 	 */
 	public static void w(short message) {
 		System.out.println(log("WARN", Short.toString(message)));
@@ -1094,8 +1040,8 @@ public class Log {
 	/**
 	 * Use this for logging when something goes absolutely wrong
 	 * and there is no other solution.
-	 * @param tag
-	 * @param message
+	 * @param tag The tag to use.
+	 * @param message The message to log.
 	 */
 	public static void wtf(String tag, short message) {
 		System.out.println(log(tag.toLowerCase(), "WTF", Short.toString(message)));
@@ -1104,8 +1050,7 @@ public class Log {
 	/**
 	 * Use this for logging when something goes absolutely wrong
 	 * and there is no other solution.
-	 * @param tag
-	 * @param message
+	 * @param message The message to log.
 	 */
 	public static void wtf(short message) {
 		System.out.println(log("WTF", Short.toString(message)));
@@ -1113,8 +1058,8 @@ public class Log {
 
 	/**
 	 * Use this for logging errors.
-	 * @param tag
-	 * @param message
+	 * @param tag The tag to use.
+	 * @param message The message to log.
 	 */
 	public static void e(String tag, char message) {
 		System.err.println(log(tag.toLowerCase(), "ERROR", Character.toString(message)));
@@ -1122,8 +1067,7 @@ public class Log {
 
 	/**
 	 * Use this for logging errors.
-	 * @param tag
-	 * @param message
+	 * @param message The message to log.
 	 */
 	public static void e(char message) {
 		System.err.println(log("ERROR", Character.toString(message)));
@@ -1131,8 +1075,8 @@ public class Log {
 
 	/**
 	 * Use this for logging debugging.
-	 * @param tag
-	 * @param message
+	 * @param tag The tag to use.
+	 * @param message The message to log.
 	 */
 	public static void d(String tag, char message) {
 		System.out.println(log(tag.toLowerCase(), "DEBUG", Character.toString(message)));
@@ -1140,8 +1084,7 @@ public class Log {
 
 	/**
 	 * Use this for logging debugging.
-	 * @param tag
-	 * @param message
+	 * @param message The message to log.
 	 */
 	public static void d(char message) {
 		System.out.println(log("DEBUG", Character.toString(message)));
@@ -1149,8 +1092,8 @@ public class Log {
 
 	/**
 	 * Use this for logging information.
-	 * @param tag
-	 * @param message
+	 * @param tag The tag to use.
+	 * @param message The message to log.
 	 */
 	public static void i(String tag, char message) {
 		System.out.println(log(tag.toLowerCase(), "INFO", Character.toString(message)));
@@ -1158,8 +1101,7 @@ public class Log {
 
 	/**
 	 * Use this for logging information.
-	 * @param tag
-	 * @param message
+	 * @param message The message to log.
 	 */
 	public static void i(char message) {
 		System.out.println(log("INFO", Character.toString(message)));
@@ -1167,8 +1109,8 @@ public class Log {
 
 	/**
 	 * Use this for logging verbose information.
-	 * @param tag
-	 * @param message
+	 * @param tag The tag to use.
+	 * @param message The message to log.
 	 */
 	public static void v(String tag, char message) {
 		System.out.println(log(tag.toLowerCase(), "VERBOSE", Character.toString(message)));
@@ -1176,8 +1118,7 @@ public class Log {
 
 	/**
 	 * Use this for logging verbose information.
-	 * @param tag
-	 * @param message
+	 * @param message The message to log.
 	 */
 	public static void v(char message) {
 		System.out.println(log("VERBOSE", Character.toString(message)));
@@ -1185,8 +1126,8 @@ public class Log {
 
 	/**
 	 * Use this for logging warnings.
-	 * @param tag
-	 * @param message
+	 * @param tag The tag to use.
+	 * @param message The message to log.
 	 */
 	public static void w(String tag, char message) {
 		System.out.println(log(tag.toLowerCase(), "WARN", Character.toString(message)));
@@ -1194,8 +1135,7 @@ public class Log {
 
 	/**
 	 * Use this for logging warnings.
-	 * @param tag
-	 * @param message
+	 * @param message The message to log.
 	 */
 	public static void w( char message) {
 		System.out.println(log("WARN", Character.toString(message)));
@@ -1204,8 +1144,8 @@ public class Log {
 	/**
 	 * Use this for logging when something goes absolutely wrong
 	 * and there is no other solution.
-	 * @param tag
-	 * @param message
+	 * @param tag The tag to use.
+	 * @param message The message to log.
 	 */
 	public static void wtf(String tag, char message) {
 		System.out.println(log(tag.toLowerCase(), "WTF", Character.toString(message)));
@@ -1214,8 +1154,7 @@ public class Log {
 	/**
 	 * Use this for logging when something goes absolutely wrong
 	 * and there is no other solution.
-	 * @param tag
-	 * @param message
+	 * @param message The message to log.
 	 */
 	public static void wtf(char message) {
 		System.out.println(log("WTF", Character.toString(message)));
