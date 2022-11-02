@@ -236,7 +236,7 @@ public class Log {
 	 * @param message
 	 */
 	public static void e(String tag, String message) {
-		System.err.println(log(tag.toLowerCase(), "ERROR", message));
+		System.err.println(log(tag, "ERROR", message));
 	}
 
 	/**
@@ -254,7 +254,7 @@ public class Log {
 	 * @param message
 	 */
 	public static void d(String tag, String message) {
-		System.out.println(log(tag.toLowerCase(), "DEBUG", message));
+		System.out.println(log(tag, "DEBUG", message));
 	}
 
 	/**
@@ -272,7 +272,7 @@ public class Log {
 	 * @param message
 	 */
 	public static void i(String tag, String message) {
-		System.out.println(log(tag.toLowerCase(), "INFO", message));
+		System.out.println(log(tag, "INFO", message));
 	}
 
 	/**
@@ -290,7 +290,7 @@ public class Log {
 	 * @param message
 	 */
 	public static void v(String tag, String message) {
-		System.out.println(log(tag.toLowerCase(), "VERBOSE", message));
+		System.out.println(log(tag, "VERBOSE", message));
 	}
 
 	/**
@@ -308,7 +308,7 @@ public class Log {
 	 * @param message
 	 */
 	public static void w(String tag, String message) {
-		System.out.println(log(tag.toLowerCase(), "WARN", message));
+		System.out.println(log(tag, "WARN", message));
 	}
 
 	/**
@@ -327,7 +327,7 @@ public class Log {
 	 * @param message
 	 */
 	public static void wtf(String tag, String message) {
-		System.out.println(log(tag.toLowerCase(), "WTF", message));
+		System.out.println(log(tag, "WTF", message));
 	}
 
 	/**
@@ -346,7 +346,7 @@ public class Log {
 	 * @param message
 	 */
 	public static void e(String tag, int message) {
-		System.err.println(log(tag.toLowerCase(), "ERROR", Integer.toString(message)));
+		System.err.println(log(tag, "ERROR", Integer.toString(message)));
 
 	}
 
@@ -365,7 +365,7 @@ public class Log {
 	 * @param message
 	 */
 	public static void d(String tag, int message) {
-		System.out.println(log(tag.toLowerCase(), "DEBUG", Integer.toString(message)));
+		System.out.println(log(tag, "DEBUG", Integer.toString(message)));
 	}
 
 	/**
@@ -383,7 +383,7 @@ public class Log {
 	 * @param message
 	 */
 	public static void i(String tag, int message) {
-		System.out.println(log(tag.toLowerCase(), "INFO", Integer.toString(message)));
+		System.out.println(log(tag, "INFO", Integer.toString(message)));
 	}
 
 	/**
@@ -401,7 +401,7 @@ public class Log {
 	 * @param message
 	 */
 	public static void v(String tag, int message) {
-		System.out.println(log(tag.toLowerCase(), "VERBOSE", Integer.toString(message)));
+		System.out.println(log(tag, "VERBOSE", Integer.toString(message)));
 	}
 
 	/**
@@ -419,7 +419,7 @@ public class Log {
 	 * @param message
 	 */
 	public static void w(String tag, int message) {
-		System.out.println(log(tag.toLowerCase(), "WARN", Integer.toString(message)));
+		System.out.println(log(tag, "WARN", Integer.toString(message)));
 	}
 
 	/**
@@ -438,7 +438,7 @@ public class Log {
 	 * @param message
 	 */
 	public static void wtf(String tag, int message) {
-		System.out.println(log(tag.toLowerCase(), "WTF", Integer.toString(message)));
+		System.out.println(log(tag, "WTF", Integer.toString(message)));
 	}
 
 	/**
@@ -457,7 +457,7 @@ public class Log {
 	 * @param message
 	 */
 	public static void e(String tag, boolean message) {
-		System.err.println(log(tag.toLowerCase(), "ERROR", Boolean.toString(message)));
+		System.err.println(log(tag, "ERROR", Boolean.toString(message)));
 	}
 
 	/**
@@ -475,7 +475,7 @@ public class Log {
 	 * @param message
 	 */
 	public static void d(String tag, boolean message) {
-		System.out.println(log(tag.toLowerCase(), "DEBUG", Boolean.toString(message)));
+		System.out.println(log(tag, "DEBUG", Boolean.toString(message)));
 	}
 
 	/**
@@ -493,7 +493,7 @@ public class Log {
 	 * @param message
 	 */
 	public static void i(String tag, boolean message) {
-		System.out.println(log(tag.toLowerCase(), "INFO", Boolean.toString(message)));
+		System.out.println(log(tag, "INFO", Boolean.toString(message)));
 	}
 
 	/**
@@ -511,7 +511,7 @@ public class Log {
 	 * @param message
 	 */
 	public static void v(String tag, boolean message) {
-		System.out.println(log(tag.toLowerCase(), "VERBOSE", Boolean.toString(message)));
+		System.out.println(log(tag, "VERBOSE", Boolean.toString(message)));
 	}
 
 	/**
@@ -529,7 +529,7 @@ public class Log {
 	 * @param message
 	 */
 	public static void w(String tag, boolean message) {
-		System.out.println(log(tag.toLowerCase(), "WARN", Boolean.toString(message)));
+		System.out.println(log(tag, "WARN", Boolean.toString(message)));
 	}
 
 	/**
@@ -548,7 +548,7 @@ public class Log {
 	 * @param message
 	 */
 	public static void wtf(String tag, boolean message) {
-		System.out.println(log(tag.toLowerCase(), "WTF", Boolean.toString(message)));
+		System.out.println(log(tag, "WTF", Boolean.toString(message)));
 	}
 
 	/**
@@ -567,7 +567,7 @@ public class Log {
 	 * @param message
 	 */
 	public static void e(String tag, byte message) {
-		System.err.println(log(tag.toLowerCase(), "ERROR", Byte.toString(message)));
+		System.err.println(log(tag, "ERROR", Byte.toString(message)));
 	}
 
 	/**
@@ -585,7 +585,7 @@ public class Log {
 	 * @param message
 	 */
 	public static void d(String tag, byte message) {
-		System.out.println(log(tag.toLowerCase(), "DEBUG", Byte.toString(message)));
+		System.out.println(log(tag, "DEBUG", Byte.toString(message)));
 	}
 
 	/**
@@ -603,7 +603,7 @@ public class Log {
 	 * @param message
 	 */
 	public static void i(String tag, byte message) {
-		System.out.println(log(tag.toLowerCase(), "INFO", Byte.toString(message)));
+		System.out.println(log(tag, "INFO", Byte.toString(message)));
 	}
 
 	/**
@@ -621,7 +621,7 @@ public class Log {
 	 * @param message
 	 */
 	public static void v(String tag, byte message) {
-		System.out.println(log(tag.toLowerCase(), "VERBOSE", Byte.toString(message)));
+		System.out.println(log(tag, "VERBOSE", Byte.toString(message)));
 	}
 
 	/**
@@ -639,7 +639,7 @@ public class Log {
 	 * @param message
 	 */
 	public static void w(String tag, byte message) {
-		System.out.println(log(tag.toLowerCase(), "WARN", Byte.toString(message)));
+		System.out.println(log(tag, "WARN", Byte.toString(message)));
 	}
 
 	/**
@@ -658,7 +658,7 @@ public class Log {
 	 * @param message
 	 */
 	public static void wtf(String tag, byte message) {
-		System.out.println(log(tag.toLowerCase(), "WTF", Byte.toString(message)));
+		System.out.println(log(tag, "WTF", Byte.toString(message)));
 	}
 
 	/**
@@ -677,7 +677,7 @@ public class Log {
 	 * @param message
 	 */
 	public static void e(String tag, long message) {
-		System.err.println(log(tag.toLowerCase(), "ERROR", Long.toString(message)));
+		System.err.println(log(tag, "ERROR", Long.toString(message)));
 	}
 
 	/**
@@ -695,7 +695,7 @@ public class Log {
 	 * @param message
 	 */
 	public static void d(String tag, long message) {
-		System.out.println(log(tag.toLowerCase(), "DEBUG", Long.toString(message)));
+		System.out.println(log(tag, "DEBUG", Long.toString(message)));
 	}
 
 	/**
@@ -713,7 +713,7 @@ public class Log {
 	 * @param message
 	 */
 	public static void i(String tag, long message) {
-		System.out.println(log(tag.toLowerCase(), "INFO", Long.toString(message)));
+		System.out.println(log(tag, "INFO", Long.toString(message)));
 	}
 
 	/**
@@ -731,7 +731,7 @@ public class Log {
 	 * @param message
 	 */
 	public static void v(String tag, long message) {
-		System.out.println(log(tag.toLowerCase(), "VERBOSE", Long.toString(message)));
+		System.out.println(log(tag, "VERBOSE", Long.toString(message)));
 	}
 
 	/**
@@ -749,7 +749,7 @@ public class Log {
 	 * @param message
 	 */
 	public static void w(String tag, long message) {
-		System.out.println(log(tag.toLowerCase(), "WARN", Long.toString(message)));
+		System.out.println(log(tag, "WARN", Long.toString(message)));
 	}
 
 	/**
@@ -768,7 +768,7 @@ public class Log {
 	 * @param message
 	 */
 	public static void wtf(String tag, long message) {
-		System.out.println(log(tag.toLowerCase(), "WTF", Long.toString(message)));
+		System.out.println(log(tag, "WTF", Long.toString(message)));
 	}
 
 	/**
@@ -787,7 +787,7 @@ public class Log {
 	 * @param message
 	 */
 	public static void e(String tag, float message) {
-		System.err.println(log(tag.toLowerCase(), "ERROR", Float.toString(message)));
+		System.err.println(log(tag, "ERROR", Float.toString(message)));
 	}
 
 	/**
@@ -805,7 +805,7 @@ public class Log {
 	 * @param message
 	 */
 	public static void d(String tag, float message) {
-		System.out.println(log(tag.toLowerCase(), "DEBUG", Float.toString(message)));
+		System.out.println(log(tag, "DEBUG", Float.toString(message)));
 	}
 
 	/**
@@ -823,7 +823,7 @@ public class Log {
 	 * @param message
 	 */
 	public static void i(String tag, float message) {
-		System.out.println(log(tag.toLowerCase(), "INFO", Float.toString(message)));
+		System.out.println(log(tag, "INFO", Float.toString(message)));
 	}
 
 	/**
@@ -841,7 +841,7 @@ public class Log {
 	 * @param message
 	 */
 	public static void v(String tag, float message) {
-		System.out.println(log(tag.toLowerCase(), "VERBOSE", Float.toString(message)));
+		System.out.println(log(tag, "VERBOSE", Float.toString(message)));
 	}
 
 	/**
@@ -859,7 +859,7 @@ public class Log {
 	 * @param message
 	 */
 	public static void w(String tag, float message) {
-		System.out.println(log(tag.toLowerCase(), "WARN", Float.toString(message)));
+		System.out.println(log(tag, "WARN", Float.toString(message)));
 	}
 
 	/**
@@ -878,7 +878,7 @@ public class Log {
 	 * @param message
 	 */
 	public static void wtf(String tag, float message) {
-		System.out.println(log(tag.toLowerCase(), "WTF", Float.toString(message)));
+		System.out.println(log(tag, "WTF", Float.toString(message)));
 	}
 
 	/**
@@ -897,7 +897,7 @@ public class Log {
 	 * @param message
 	 */
 	public static void e(String tag, double message) {
-		System.err.println(log(tag.toLowerCase(), "ERROR", Double.toString(message)));
+		System.err.println(log(tag, "ERROR", Double.toString(message)));
 	}
 
 	/**
@@ -915,7 +915,7 @@ public class Log {
 	 * @param message
 	 */
 	public static void d(String tag, double message) {
-		System.out.println(log(tag.toLowerCase(), "DEBUG", Double.toString(message)));
+		System.out.println(log(tag, "DEBUG", Double.toString(message)));
 	}
 
 	/**
@@ -933,7 +933,7 @@ public class Log {
 	 * @param message
 	 */
 	public static void i(String tag, double message) {
-		System.out.println(log(tag.toLowerCase(), "INFO", Double.toString(message)));
+		System.out.println(log(tag, "INFO", Double.toString(message)));
 	}
 
 	/**
@@ -951,7 +951,7 @@ public class Log {
 	 * @param message
 	 */
 	public static void v(String tag, double message) {
-		System.out.println(log(tag.toLowerCase(), "VERBOSE", Double.toString(message)));
+		System.out.println(log(tag, "VERBOSE", Double.toString(message)));
 	}
 
 	/**
@@ -969,7 +969,7 @@ public class Log {
 	 * @param message
 	 */
 	public static void w(String tag, double message) {
-		System.out.println(log(tag.toLowerCase(), "WARN", Double.toString(message)));
+		System.out.println(log(tag, "WARN", Double.toString(message)));
 	}
 
 	/**
@@ -988,7 +988,7 @@ public class Log {
 	 * @param message
 	 */
 	public static void wtf(String tag, double message) {
-		System.out.println(log(tag.toLowerCase(), "WTF", Double.toString(message)));
+		System.out.println(log(tag, "WTF", Double.toString(message)));
 	}
 
 	/**
@@ -1007,7 +1007,7 @@ public class Log {
 	 * @param message
 	 */
 	public static void e(String tag, short message) {
-		System.err.println(log(tag.toLowerCase(), "ERROR", Short.toString(message)));
+		System.err.println(log(tag, "ERROR", Short.toString(message)));
 	}
 
 	/**
@@ -1025,7 +1025,7 @@ public class Log {
 	 * @param message
 	 */
 	public static void d(String tag, short message) {
-		System.out.println(log(tag.toLowerCase(), "DEBUG", Short.toString(message)));
+		System.out.println(log(tag, "DEBUG", Short.toString(message)));
 	}
 
 	/**
@@ -1043,7 +1043,7 @@ public class Log {
 	 * @param message
 	 */
 	public static void i(String tag, short message) {
-		System.out.println(log(tag.toLowerCase(), "INFO", Short.toString(message)));
+		System.out.println(log(tag, "INFO", Short.toString(message)));
 	}
 
 	/**
@@ -1061,7 +1061,7 @@ public class Log {
 	 * @param message
 	 */
 	public static void v(String tag, short message) {
-		System.out.println(log(tag.toLowerCase(), "VERBOSE", Short.toString(message)));
+		System.out.println(log(tag, "VERBOSE", Short.toString(message)));
 	}
 
 	/**
@@ -1079,7 +1079,7 @@ public class Log {
 	 * @param message
 	 */
 	public static void w(String tag, short message) {
-		System.out.println(log(tag.toLowerCase(), "WARN", Short.toString(message)));
+		System.out.println(log(tag, "WARN", Short.toString(message)));
 	}
 
 	/**
@@ -1098,7 +1098,7 @@ public class Log {
 	 * @param message
 	 */
 	public static void wtf(String tag, short message) {
-		System.out.println(log(tag.toLowerCase(), "WTF", Short.toString(message)));
+		System.out.println(log(tag, "WTF", Short.toString(message)));
 	}
 
 	/**
@@ -1117,7 +1117,7 @@ public class Log {
 	 * @param message
 	 */
 	public static void e(String tag, char message) {
-		System.err.println(log(tag.toLowerCase(), "ERROR", Character.toString(message)));
+		System.err.println(log(tag, "ERROR", Character.toString(message)));
 	}
 
 	/**
@@ -1135,7 +1135,7 @@ public class Log {
 	 * @param message
 	 */
 	public static void d(String tag, char message) {
-		System.out.println(log(tag.toLowerCase(), "DEBUG", Character.toString(message)));
+		System.out.println(log(tag, "DEBUG", Character.toString(message)));
 	}
 
 	/**
@@ -1153,7 +1153,7 @@ public class Log {
 	 * @param message
 	 */
 	public static void i(String tag, char message) {
-		System.out.println(log(tag.toLowerCase(), "INFO", Character.toString(message)));
+		System.out.println(log(tag, "INFO", Character.toString(message)));
 	}
 
 	/**
@@ -1171,7 +1171,7 @@ public class Log {
 	 * @param message
 	 */
 	public static void v(String tag, char message) {
-		System.out.println(log(tag.toLowerCase(), "VERBOSE", Character.toString(message)));
+		System.out.println(log(tag, "VERBOSE", Character.toString(message)));
 	}
 
 	/**
@@ -1189,7 +1189,7 @@ public class Log {
 	 * @param message
 	 */
 	public static void w(String tag, char message) {
-		System.out.println(log(tag.toLowerCase(), "WARN", Character.toString(message)));
+		System.out.println(log(tag, "WARN", Character.toString(message)));
 	}
 
 	/**
@@ -1208,7 +1208,7 @@ public class Log {
 	 * @param message
 	 */
 	public static void wtf(String tag, char message) {
-		System.out.println(log(tag.toLowerCase(), "WTF", Character.toString(message)));
+		System.out.println(log(tag, "WTF", Character.toString(message)));
 	}
 
 	/**
