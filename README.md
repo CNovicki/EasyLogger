@@ -33,7 +33,7 @@ All primitive types are supported.
 
 #### Debugging and Verbose Logging
 
-`Log.d()`, `Log.wtf()`, and `Log.v()` are special cases; they need to be enables before using. This is accomplished the follow way:
+`Log.d()`, `Log.wtf()`, and `Log.v()` are special cases; they need to be enabled before using. This is accomplished the follow way:
 
 &emsp;`Log.enableDebugging();` will enable `Log.d()` and `Log.wtf()`
 
