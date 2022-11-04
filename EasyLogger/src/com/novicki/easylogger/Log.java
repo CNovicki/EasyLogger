@@ -23,6 +23,16 @@ public class Log {
 	private static boolean enableLogging = false;
 	
 	/**
+	 * Enables or disables verbose logging.
+	 */
+	private static boolean enableVerbose = false;
+	
+	/**
+	 * Enables or disables debugging.
+	 */
+	private static boolean enableDebugging = false;
+	
+	/**
 	 * Sets the name of the file to save logs.
 	 */
 	private static String filename = "data.log";
@@ -77,7 +87,60 @@ public class Log {
 		Log.enableLogging = true;
 		Log.filename = filename;
 	}
-		
+	
+	/**
+	 * Disables logging to a file.
+	 */
+	public static void disableLogging() {
+		Log.enableLogging = false;
+	}
+	
+	/**
+	 * Enables verbose logging.
+	 */
+	public static void enableVerbose() {
+		Log.enableVerbose = true;
+	}
+	
+	/**
+	 * Disables verbose logging.
+	 */
+	public static void disableVerbose() {
+		Log.enableVerbose = false;
+	}
+	
+	/**
+	 * Enables debugging.
+	 */
+	public static void enableDebugging() {
+		Log.enableDebugging = true;
+	}
+	
+	/**
+	 * Disables debugging.
+	 */
+	public static void disableDebugging() {
+		Log.enableDebugging = false;
+	}
+	
+	/**
+	 * Passes args from the main method to the Log.
+	 * Possible args to use:<br>
+	 * 	<code>--verbose</code><br>
+	 * 	<code>--debug</code><br>
+	 * @param args The args to pass through.
+	 */
+	public static void passArgs(String[] args) {
+		for(int i = 0; i < args.length; i++) {
+			if(args[i].equals("--verbose")) {
+				Log.enableVerbose = true;
+			}
+			if(args[i].equals("--debug")) {
+				Log.enableDebugging = true;
+			}
+		}
+	}
+	
 	/**
 	 * Creates the log directory in the <code>user.home</code> directory if
 	 * it does not exist. 
@@ -122,7 +185,6 @@ public class Log {
 		}
 		catch(IOException e) {	
 			e.printStackTrace();
-			
 		}	
 	}
 
@@ -191,7 +253,9 @@ public class Log {
 	 * Use this for logging debugging.
 	 */
 	public static void d() {
-		System.out.println();
+		if(Log.enableDebugging) {
+			System.out.println();
+		}
 	}
 	
 	/**
@@ -205,14 +269,18 @@ public class Log {
 	 * Use this for logging verbose information.
 	 */
 	public static void v() {
-		System.out.println();
+		if(Log.enableVerbose) {
+			System.out.println();
+		}
 	}
 	
 	/**
 	 * Use this for logging warnings.
 	 */
 	public static void w() {
-		System.out.println();
+		if(Log.enableDebugging) {
+			System.out.println();
+		}
 	}
 
 	/**
@@ -220,7 +288,9 @@ public class Log {
 	 * and there is no other solution.
 	 */
 	public static void wtf() {
-		System.out.println();
+		if(Log.enableDebugging) {
+			System.out.println();
+		}
 	}
 	
 	/**
@@ -246,7 +316,9 @@ public class Log {
 	 * @param message The message to log.
 	 */
 	public static void d(String tag, String message) {
-		System.out.println(log(tag, "DEBUG", message));
+		if(Log.enableDebugging) {
+			System.out.println(log(tag, "DEBUG", message));
+		}
 	}
 
 	/**
@@ -254,7 +326,9 @@ public class Log {
 	 * @param message The message to log.
 	 */
 	public static void d(String message) {
-		System.out.println(log("DEBUG", message));
+		if(Log.enableDebugging) {
+			System.out.println(log("DEBUG", message));
+		}
 	}
 
 	/**
@@ -280,7 +354,9 @@ public class Log {
 	 * @param message The message to log.
 	 */
 	public static void v(String tag, String message) {
-		System.out.println(log(tag, "VERBOSE", message));
+		if(Log.enableVerbose) {
+			System.out.println(log(tag, "VERBOSE", message));
+		}
 	}
 
 	/**
@@ -288,7 +364,9 @@ public class Log {
 	 * @param message The message to log.
 	 */
 	public static void v(String message) {
-		System.out.println(log("VERBOSE", message));
+		if(Log.enableVerbose) {
+			System.out.println(log("VERBOSE", message));
+		}
 	}
 
 	/**
@@ -315,7 +393,9 @@ public class Log {
 	 * @param message The message to log.
 	 */
 	public static void wtf(String tag, String message) {
-		System.out.println(log(tag, "WTF", message));
+		if(Log.enableDebugging) {
+			System.out.println(log(tag, "WTF", message));
+		}
 	}
 
 	/**
@@ -324,7 +404,9 @@ public class Log {
 	 * @param message The message to log.
 	 */
 	public static void wtf(String message) {
-		System.out.println(log("WTF", message));
+		if(Log.enableDebugging) {
+			System.out.println(log("WTF", message));
+		}
 	}
 
 	/**
@@ -351,7 +433,9 @@ public class Log {
 	 * @param message The message to log.
 	 */
 	public static void d(String tag, int message) {
-		System.out.println(log(tag, "DEBUG", Integer.toString(message)));
+		if(Log.enableDebugging) {
+			System.out.println(log(tag, "DEBUG", Integer.toString(message)));
+		}
 	}
 
 	/**
@@ -359,7 +443,9 @@ public class Log {
 	 * @param message The message to use.
 	 */
 	public static void d(int message) {
-		System.out.println(log("DEBUG", Integer.toString(message)));
+		if(Log.enableDebugging) {
+			System.out.println(log("DEBUG", Integer.toString(message)));
+		}
 	}
 
 	/**
@@ -385,7 +471,9 @@ public class Log {
 	 * @param message The message to log.
 	 */
 	public static void v(String tag, int message) {
-		System.out.println(log(tag, "VERBOSE", Integer.toString(message)));
+		if(Log.enableVerbose) {
+			System.out.println(log(tag, "VERBOSE", Integer.toString(message)));
+		}
 	}
 
 	/**
@@ -393,7 +481,9 @@ public class Log {
 	 * @param message The message to log.
 	 */
 	public static void v(int message) {
-		System.out.println(log("VERBOSE", Integer.toString(message)));
+		if(Log.enableVerbose) {
+			System.out.println(log("VERBOSE", Integer.toString(message)));
+		}
 	}
 
 	/**
@@ -420,7 +510,9 @@ public class Log {
 	 * @param message The message to log.
 	 */
 	public static void wtf(String tag, int message) {
-		System.out.println(log(tag, "WTF", Integer.toString(message)));
+		if(Log.enableDebugging) {
+			System.out.println(log(tag, "WTF", Integer.toString(message)));
+		}
 	}
 
 	/**
@@ -429,7 +521,9 @@ public class Log {
 	 * @param message The message to log.
 	 */
 	public static void wtf(int message) {
-		System.out.println(log("WTF", Integer.toString(message)));
+		if(Log.enableDebugging) {
+			System.out.println(log("WTF", Integer.toString(message)));
+		}
 	}
 
 	/**
@@ -455,7 +549,9 @@ public class Log {
 	 * @param message The message to log.
 	 */
 	public static void d(String tag, boolean message) {
-		System.out.println(log(tag, "DEBUG", Boolean.toString(message)));
+		if(Log.enableDebugging) {
+			System.out.println(log(tag, "DEBUG", Boolean.toString(message)));
+		}
 	}
 
 	/**
@@ -463,7 +559,9 @@ public class Log {
 	 * @param message The message to log.
 	 */
 	public static void d(boolean message) {
-		System.out.println(log("DEBUG", Boolean.toString(message)));
+		if(Log.enableDebugging) {
+			System.out.println(log("DEBUG", Boolean.toString(message)));
+		}
 	}
 
 	/**
@@ -489,7 +587,9 @@ public class Log {
 	 * @param message The message to log.
 	 */
 	public static void v(String tag, boolean message) {
-		System.out.println(log(tag, "VERBOSE", Boolean.toString(message)));
+		if(Log.enableVerbose) {
+			System.out.println(log(tag, "VERBOSE", Boolean.toString(message)));
+		}
 	}
 
 	/**
@@ -497,7 +597,9 @@ public class Log {
 	 * @param message The message to log.
 	 */
 	public static void v(boolean message) {
-		System.out.println(log("VERBOSE", Boolean.toString(message)));
+		if(Log.enableVerbose) {
+			System.out.println(log("VERBOSE", Boolean.toString(message)));
+		}
 	}
 
 	/**
@@ -524,7 +626,9 @@ public class Log {
 	 * @param message The message to log.
 	 */
 	public static void wtf(String tag, boolean message) {
-		System.out.println(log(tag, "WTF", Boolean.toString(message)));
+		if(Log.enableDebugging) {
+			System.out.println(log(tag, "WTF", Boolean.toString(message)));
+		}
 	}
 
 	/**
@@ -533,7 +637,9 @@ public class Log {
 	 * @param message The message to log.
 	 */
 	public static void wtf(boolean message) {
-		System.out.println(log("WTF", Boolean.toString(message)));
+		if(Log.enableDebugging) {
+			System.out.println(log("WTF", Boolean.toString(message)));
+		}
 	}
 
 	/**
@@ -559,7 +665,9 @@ public class Log {
 	 * @param message The message to log.
 	 */
 	public static void d(String tag, byte message) {
-		System.out.println(log(tag, "DEBUG", Byte.toString(message)));
+		if(Log.enableDebugging) {
+			System.out.println(log(tag, "DEBUG", Byte.toString(message)));
+		}
 	}
 
 	/**
@@ -567,7 +675,9 @@ public class Log {
 	 * @param message The message to log.
 	 */
 	public static void d(byte message) {
-		System.out.println(log("DEBUG", Byte.toString(message)));
+		if(Log.enableDebugging) {
+			System.out.println(log("DEBUG", Byte.toString(message)));
+		}
 	}
 
 	/**
@@ -593,7 +703,9 @@ public class Log {
 	 * @param message The message to log.
 	 */
 	public static void v(String tag, byte message) {
-		System.out.println(log(tag, "VERBOSE", Byte.toString(message)));
+		if(Log.enableVerbose) {
+			System.out.println(log(tag, "VERBOSE", Byte.toString(message)));
+		}
 	}
 
 	/**
@@ -601,7 +713,9 @@ public class Log {
 	 * @param message The message to log.
 	 */
 	public static void v(byte message) {
-		System.out.println(log("VERBOSE", Byte.toString(message)));
+		if(Log.enableVerbose) {
+			System.out.println(log("VERBOSE", Byte.toString(message)));
+		}
 	}
 
 	/**
@@ -628,7 +742,9 @@ public class Log {
 	 * @param message The message to log.
 	 */
 	public static void wtf(String tag, byte message) {
-		System.out.println(log(tag, "WTF", Byte.toString(message)));
+		if(Log.enableDebugging) {
+			System.out.println(log(tag, "WTF", Byte.toString(message)));
+		}
 	}
 
 	/**
@@ -637,7 +753,9 @@ public class Log {
 	 * @param message The message to log.
 	 */
 	public static void wtf(byte message) {
-		System.out.println(log("WTF", Byte.toString(message)));
+		if(Log.enableDebugging) {
+			System.out.println(log("WTF", Byte.toString(message)));
+		}
 	}
 
 	/**
@@ -663,7 +781,9 @@ public class Log {
 	 * @param message The message to log.
 	 */
 	public static void d(String tag, long message) {
-		System.out.println(log(tag, "DEBUG", Long.toString(message)));
+		if(Log.enableDebugging) {
+			System.out.println(log(tag, "DEBUG", Long.toString(message)));
+		}
 	}
 
 	/**
@@ -671,7 +791,9 @@ public class Log {
 	 * @param message The message to use.
 	 */
 	public static void d(long message) {
-		System.out.println(log("DEBUG", Long.toString(message)));
+		if(Log.enableDebugging) {
+			System.out.println(log("DEBUG", Long.toString(message)));
+		}
 	}
 
 	/**
@@ -697,7 +819,9 @@ public class Log {
 	 * @param message The message to log.
 	 */
 	public static void v(String tag, long message) {
-		System.out.println(log(tag, "VERBOSE", Long.toString(message)));
+		if(Log.enableVerbose) {
+			System.out.println(log(tag, "VERBOSE", Long.toString(message)));
+		}
 	}
 
 	/**
@@ -705,7 +829,9 @@ public class Log {
 	 * @param message The message to log.
 	 */
 	public static void v(long message) {
-		System.out.println(log("VERBOSE", Long.toString(message)));
+		if(Log.enableVerbose) {
+			System.out.println(log("VERBOSE", Long.toString(message)));
+		}
 	}
 
 	/**
@@ -732,7 +858,9 @@ public class Log {
 	 * @param message The message to log.
 	 */
 	public static void wtf(String tag, long message) {
-		System.out.println(log(tag, "WTF", Long.toString(message)));
+		if(Log.enableDebugging) {
+			System.out.println(log(tag, "WTF", Long.toString(message)));
+		}
 	}
 
 	/**
@@ -741,7 +869,9 @@ public class Log {
 	 * @param message The message to log.
 	 */
 	public static void wtf(long message) {
-		System.out.println(log("WTF", Long.toString(message)));
+		if(Log.enableDebugging) {
+			System.out.println(log("WTF", Long.toString(message)));
+		}
 	}
 
 	/**
@@ -767,7 +897,9 @@ public class Log {
 	 * @param message The message to log.
 	 */
 	public static void d(String tag, float message) {
-		System.out.println(log(tag, "DEBUG", Float.toString(message)));
+		if(Log.enableDebugging) {
+			System.out.println(log(tag, "DEBUG", Float.toString(message)));
+		}
 	}
 
 	/**
@@ -775,7 +907,9 @@ public class Log {
 	 * @param message The message to log.
 	 */
 	public static void d(float message) {
-		System.out.println(log("DEBUG", Float.toString(message)));
+		if(Log.enableDebugging) {
+			System.out.println(log("DEBUG", Float.toString(message)));
+		}
 	}
 
 	/**
@@ -801,7 +935,9 @@ public class Log {
 	 * @param message The message to log.
 	 */
 	public static void v(String tag, float message) {
-		System.out.println(log(tag, "VERBOSE", Float.toString(message)));
+		if(Log.enableVerbose) {
+			System.out.println(log(tag, "VERBOSE", Float.toString(message)));
+		}
 	}
 
 	/**
@@ -809,7 +945,9 @@ public class Log {
 	 * @param message The message to log.
 	 */
 	public static void v(float message) {
-		System.out.println(log("VERBOSE", Float.toString(message)));
+		if(Log.enableVerbose) {
+			System.out.println(log("VERBOSE", Float.toString(message)));
+		}
 	}
 
 	/**
@@ -836,7 +974,9 @@ public class Log {
 	 * @param message The message to log.
 	 */
 	public static void wtf(String tag, float message) {
-		System.out.println(log(tag, "WTF", Float.toString(message)));
+		if(Log.enableDebugging) {
+			System.out.println(log(tag, "WTF", Float.toString(message)));
+		}
 	}
 
 	/**
@@ -845,7 +985,9 @@ public class Log {
 	 * @param message The message to log.
 	 */
 	public static void wtf(float message) {
-		System.out.println(log("WTF", Float.toString(message)));
+		if(Log.enableDebugging) {
+			System.out.println(log("WTF", Float.toString(message)));
+		}
 	}
 
 	/**
@@ -871,7 +1013,9 @@ public class Log {
 	 * @param message The message to log.
 	 */
 	public static void d(String tag, double message) {
-		System.out.println(log(tag, "DEBUG", Double.toString(message)));
+		if(Log.enableDebugging) {
+			System.out.println(log(tag, "DEBUG", Double.toString(message)));
+		}
 	}
 
 	/**
@@ -879,7 +1023,9 @@ public class Log {
 	 * @param message The message to log.
 	 */
 	public static void d(double message) {
-		System.out.println(log("DEBUG", Double.toString(message)));
+		if(Log.enableDebugging) {
+			System.out.println(log("DEBUG", Double.toString(message)));
+		}
 	}
 
 	/**
@@ -905,7 +1051,9 @@ public class Log {
 	 * @param message The message to log.
 	 */
 	public static void v(String tag, double message) {
-		System.out.println(log(tag, "VERBOSE", Double.toString(message)));
+		if(Log.enableVerbose) {
+			System.out.println(log(tag, "VERBOSE", Double.toString(message)));
+		}
 	}
 
 	/**
@@ -913,7 +1061,9 @@ public class Log {
 	 * @param message The message to log.
 	 */
 	public static void v(double message) {
-		System.out.println(log("VERBOSE", Double.toString(message)));
+		if(Log.enableVerbose) {
+			System.out.println(log("VERBOSE", Double.toString(message)));
+		}
 	}
 
 	/**
@@ -940,7 +1090,9 @@ public class Log {
 	 * @param message The message to log.
 	 */
 	public static void wtf(String tag, double message) {
-		System.out.println(log(tag, "WTF", Double.toString(message)));
+		if(Log.enableDebugging) {
+			System.out.println(log(tag, "WTF", Double.toString(message)));
+		}
 	}
 
 	/**
@@ -949,7 +1101,9 @@ public class Log {
 	 * @param message The message to log.
 	 */
 	public static void wtf(double message) {
-		System.out.println(log("WTF", Double.toString(message)));
+		if(Log.enableDebugging) {
+			System.out.println(log("WTF", Double.toString(message)));
+		}
 	}
 
 	/**
@@ -975,7 +1129,9 @@ public class Log {
 	 * @param message The message to log.
 	 */
 	public static void d(String tag, short message) {
-		System.out.println(log(tag, "DEBUG", Short.toString(message)));
+		if(Log.enableDebugging) {
+			System.out.println(log(tag, "DEBUG", Short.toString(message)));
+		}
 	}
 
 	/**
@@ -983,7 +1139,9 @@ public class Log {
 	 * @param message The message to log.
 	 */
 	public static void d(short message) {
-		System.out.println(log("DEBUG", Short.toString(message)));
+		if(Log.enableDebugging) {
+			System.out.println(log("DEBUG", Short.toString(message)));
+		}
 	}
 
 	/**
@@ -1009,7 +1167,9 @@ public class Log {
 	 * @param message The message to log.
 	 */
 	public static void v(String tag, short message) {
-		System.out.println(log(tag, "VERBOSE", Short.toString(message)));
+		if(Log.enableVerbose) {
+			System.out.println(log(tag, "VERBOSE", Short.toString(message)));
+		}
 	}
 
 	/**
@@ -1017,7 +1177,9 @@ public class Log {
 	 * @param message The message to log.
 	 */
 	public static void v(short message) {
-		System.out.println(log("VERBOSE", Short.toString(message)));
+		if(Log.enableVerbose) {
+			System.out.println(log("VERBOSE", Short.toString(message)));
+		}
 	}
 
 	/**
@@ -1044,7 +1206,9 @@ public class Log {
 	 * @param message The message to log.
 	 */
 	public static void wtf(String tag, short message) {
-		System.out.println(log(tag, "WTF", Short.toString(message)));
+		if(Log.enableDebugging) {
+			System.out.println(log(tag, "WTF", Short.toString(message)));
+		}
 	}
 
 	/**
@@ -1053,7 +1217,9 @@ public class Log {
 	 * @param message The message to log.
 	 */
 	public static void wtf(short message) {
-		System.out.println(log("WTF", Short.toString(message)));
+		if(Log.enableDebugging) {
+			System.out.println(log("WTF", Short.toString(message)));
+		}
 	}
 
 	/**
@@ -1079,7 +1245,9 @@ public class Log {
 	 * @param message The message to log.
 	 */
 	public static void d(String tag, char message) {
-		System.out.println(log(tag, "DEBUG", Character.toString(message)));
+		if(Log.enableDebugging) {
+			System.out.println(log(tag, "DEBUG", Character.toString(message)));
+		}
 	}
 
 	/**
@@ -1087,7 +1255,9 @@ public class Log {
 	 * @param message The message to log.
 	 */
 	public static void d(char message) {
-		System.out.println(log("DEBUG", Character.toString(message)));
+		if(Log.enableDebugging) {
+			System.out.println(log("DEBUG", Character.toString(message)));
+		}
 	}
 
 	/**
@@ -1113,7 +1283,9 @@ public class Log {
 	 * @param message The message to log.
 	 */
 	public static void v(String tag, char message) {
-		System.out.println(log(tag, "VERBOSE", Character.toString(message)));
+		if(Log.enableVerbose) {
+			System.out.println(log(tag, "VERBOSE", Character.toString(message)));
+		}
 	}
 
 	/**
@@ -1121,7 +1293,9 @@ public class Log {
 	 * @param message The message to log.
 	 */
 	public static void v(char message) {
-		System.out.println(log("VERBOSE", Character.toString(message)));
+		if(Log.enableVerbose) {
+			System.out.println(log("VERBOSE", Character.toString(message)));
+		}
 	}
 
 	/**
@@ -1148,7 +1322,9 @@ public class Log {
 	 * @param message The message to log.
 	 */
 	public static void wtf(String tag, char message) {
-		System.out.println(log(tag, "WTF", Character.toString(message)));
+		if(Log.enableDebugging) {
+			System.out.println(log(tag, "WTF", Character.toString(message)));
+		}
 	}
 
 	/**
@@ -1157,7 +1333,9 @@ public class Log {
 	 * @param message The message to log.
 	 */
 	public static void wtf(char message) {
-		System.out.println(log("WTF", Character.toString(message)));
+		if(Log.enableDebugging) {
+			System.out.println(log("WTF", Character.toString(message)));
+		}
 	}
 
 }
