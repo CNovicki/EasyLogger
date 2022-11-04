@@ -31,6 +31,22 @@ All primitive types are supported.
 
 &emsp;&emsp;`[2022/10/21 11:53:44][INFO] Hello World`
 
+#### Debugging and Verbose Logging
+
+`Log.d()`, `Log.wtf()`, and `Log.v()` are special cases; they need to be enables before using. This is accomplished the follow way:
+
+&emsp;`Log.enableDebugging();` will enable `Log.d()` and `Log.wtf()`
+
+&emsp;`Log.enableVerbose();` will enable `Log.v()`
+
+Alternatively, Debugging and Verbose Logging can be enabled with command line arguments. To do so, in the command line, use:
+
+&emsp;`--verbose` to enable Verbose Logging
+
+&emsp;`--debug` to enable Debugging
+
+In order for command line arguments to be passed properly, at the beginning of the application, in the main method, `Log.passArgs(args)`
+must be called.
   
 Optionally, it is possible to use tags when logging; this makes logging more searchable when troubleshooting:
 
